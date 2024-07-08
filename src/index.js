@@ -2,14 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 // import App from './App';
-import Status from './Status';
+// import Status from './Status';
 import reportWebVitals from './reportWebVitals';
+// import Counter from './Counter';
+import StyleApp from './StyleApp';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     {/* <App /> */}
-    <Status />
+    {/* <Status /> */}
+    {/* <Counter /> */}
+    <StyleApp />
   </React.StrictMode>
 );
 
