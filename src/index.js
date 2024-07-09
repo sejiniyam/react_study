@@ -5,7 +5,8 @@ import './index.css';
 // import Status from './Status';
 import reportWebVitals from './reportWebVitals';
 // import Counter from './Counter';
-import StyleApp from './StyleApp';
+// import StyleApp from './StyleApp';
+import TodoListApp from './TodoListApp';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -13,7 +14,8 @@ root.render(
     {/* <App /> */}
     {/* <Status /> */}
     {/* <Counter /> */}
-    <StyleApp />
+    {/* <StyleApp /> */}
+    <TodoListApp />
   </React.StrictMode>
 );
 

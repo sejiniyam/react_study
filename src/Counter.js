@@ -1,4 +1,3 @@
-import { toHaveErrorMessage } from "@testing-library/jest-dom/dist/matchers";
 import React, { Component } from "react";
 
 // useState 이용해서 컴포넌트 동적 값 관리하기
