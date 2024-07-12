@@ -1,6 +1,7 @@
 import React from "react";
 import styled, { css } from "styled-components";
 import { MdDone, MdDelete } from "react-icons/md";
+import { useTodoDispatch } from "./TodoContext";
 
 const Remove = styled.div`
   display: flex;
@@ -58,17 +59,23 @@ const Text = styled.div`
 `;
 
 function TodoItem ({ id, done, text }) {
-    return (
-        <>
-            <TodoItemBlock>
-                <CheckCircle done={done}>{done && <MdDone />}</CheckCircle>
-                <Text done={done}>{text}</Text>
-                <Remove>
-                    <MdDelete />
-                </Remove>
-            </TodoItemBlock>
-        </>
-    );
+  const dispath = useTodoDispatch();
+  const onToggle = () => dispath({ type: 'TOGGLE', id });
+  const onRemove = () => dispath({ type: 'REMOVE', id });
+
+  return (
+    <TodoItemBlock>
+        <CheckCircle done={done} onClick={onToggle}>
+          {done && <MdDone />}
+        </CheckCircle>
+        <Text done={done}>{text}</Text>
+        <Remove onClick={onRemove}>
+            <MdDelete />
+        </Remove>
+    </TodoItemBlock>
+  );
 }
 
-export default TodoItem;
+// export default TodoItem; 요랬던걸
+export default React.memo(TodoItem); // 이래하는 이유
+// : 다른 항목이 업데이트 될 때, "불필요한 렌더링을 방지"하여 성능 최적화 할 수 있음!

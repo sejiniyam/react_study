@@ -4,6 +4,7 @@ import TodoTemplate from "./TodoList/TodoTemplate";
 import TodoHead from "./TodoList/TodoHead";
 import TodoList from "./TodoList/TodoList";
 import TodoCreate from "./TodoList/ToCreate";
+import { TodoProvider } from "./TodoList/TodoContext";
 
 // 배경 회색
 const GlobalStyle = createGlobalStyle`
@@ -14,14 +15,14 @@ const GlobalStyle = createGlobalStyle`
 
 function TodoListApp() {
     return (
-        <>
+        <TodoProvider>
             <GlobalStyle />
             <TodoTemplate>
                 <TodoHead />
                 <TodoList />
                 <TodoCreate />
             </TodoTemplate>
-        </>
+        </TodoProvider>
     );
 }
 

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import { MdAdd } from "react-icons/md";
+import { useTodoDispatch, useTodoNextId } from "./TodoContext";
 
 const CircleButton = styled.div`
     background : #38d9a9;
@@ -77,14 +78,39 @@ const Input = styled.input`
 
 function TodoCreate () {
     const [ open, setOpen ] = useState(false);
+    const [ value, setValue ] = useState(''); // 자체적으로 관리해야 할 input 상태
+
+    const dispath = useTodoDispatch();
+    const nextId = useTodoNextId();
+
     const onToggle = () => setOpen(!open);
+    const onChange = e => setValue(e.target.value);
+    const onSubmit = e => {
+        e.preventDefault(); // 새로고침 방지
+        dispath({
+            type: 'CREATE',
+            todo: { // 생성될 때의 상태들..
+                id: nextId.currnet,
+                text: value,
+                done: false
+            }
+        });
+        setValue('');
+        setOpen(false);
+        nextId.currnet += 1;
+    };
 
     return (
         <>
             {open && (
                 <InsertFormPositioner>
-                    <InsertForm>
-                        <Input autoFocus placeholder="할 일 입력하고 enter 눌러주셈~" />
+                    <InsertForm onSubmit={onSubmit}>
+                        <Input 
+                            autoFocus 
+                            placeholder="할 일 입력하고 enter 눌러주셈~" 
+                            onChange={onChange}
+                            value={value}
+                        />
                     </InsertForm>
                 </InsertFormPositioner>
             )}
@@ -95,4 +121,5 @@ function TodoCreate () {
     );
 }
 
-export default TodoCreate;
+// 다른 항목이 업데이트 될 때, "불필요한 렌더링을 방지"하여 성능 최적화 할 수 있음!
+export default React.memo(TodoCreate);
