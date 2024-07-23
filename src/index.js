@@ -12,12 +12,17 @@ import Users01 from './API/Users01';
 import Users02 from './API/Users02';
 import Users_async from './API/Users_async';
 import { UsersProvider  } from './API/UsersContext';
+import { BrowserRouter } from "react-router-dom";
+import RouterApp from './RouterSample/RouterApp';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <UsersProvider>
-    <Users_async />
-  </UsersProvider>
+  <BrowserRouter>
+    <RouterApp />
+  </BrowserRouter>
+    /* <UsersProvider>
+      <Users_async />
+    </UsersProvider> */
   // <React.StrictMode>
   //   {/* <App /> */}
   //   {/* <Status /> */}
